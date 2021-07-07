@@ -1,7 +1,7 @@
 <template>
     <ul>
         <li v-for="(node, nodeIndex) in nodes" :key="nodeIndex"
-            draggable="true"
+            :draggable="true"
             @dragover.stop.prevent
             @dragenter.stop.prevent
             @dragstart.stop="onDragNode(node, $event)"
@@ -27,12 +27,15 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType } from 'vue-demi';
 
 import { treeItem, borderConfig, borderDefault } from '../../types/tree';
 import Inspector from './inspector';
 
 export default defineComponent({
+    compatConfig: {
+        COMPONENT_V_MODEL: false,
+    },
     props: {
         modelValue: {
             type: Array as PropType<treeItem[]> 
