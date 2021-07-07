@@ -1,12 +1,13 @@
 {
   "name": "vue-quick-tree",
   "description": "A simple and straightforward vue tree component",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"
   },
+  "keywords": ["tree", "recursive", "hierachy", "quick"],
   "main": "./dist/vue-tree.umd.js",
   "module": "./dist/vue-tree.es.js",
   "exports": {
