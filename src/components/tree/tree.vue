@@ -6,7 +6,6 @@
             @dragenter.stop.prevent
             @dragstart.stop="onDragNode(node, $event)"
             @drop.prevent.stop="onDropNode(node, $event)"
-            @click.prevent.stop="onClick"
         >
             <slot name="node" :node="node">
                 {{ node.name }}
@@ -115,6 +114,6 @@ ul {
     padding: 0;
     list-style: none;
     font-size: 14px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 </style>
