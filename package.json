@@ -13,12 +13,12 @@
     "hierachy",
     "quick"
   ],
-  "main": "./dist/vue-tree.umd.js",
-  "module": "./dist/vue-tree.es.js",
+  "main": "./dist/vue-quick-tree.umd.js",
+  "module": "./dist/vue-quick-tree.es.js",
   "exports": {
     ".": {
-      "import": "./dist/vue-tree.es.js",
-      "require": "./dist/vue-tree.umd.js"
+      "import": "./dist/vue-quick-tree.es.js",
+      "require": "./dist/vue-quick-tree.umd.js"
     }
   },
   "repository": {
