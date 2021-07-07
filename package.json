@@ -1,5 +1,6 @@
 {
-  "name": "vue-tree",
+  "name": "vue-quick-tree",
+  "description": "A simple and straightforward vue tree component",
   "version": "0.1.0",
   "scripts": {
     "dev": "vite",
