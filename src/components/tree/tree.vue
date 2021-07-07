@@ -33,9 +33,6 @@ import { treeItem, borderConfig, borderDefault } from '../../types/tree';
 import Inspector from './inspector';
 
 export default defineComponent({
-    compatConfig: {
-        COMPONENT_V_MODEL: false,
-    },
     props: {
         modelValue: {
             type: Array as PropType<treeItem[]> 
