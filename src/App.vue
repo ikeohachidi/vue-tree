@@ -1,33 +1,33 @@
 <template>
   <div>
-    <Tree v-model="nodes" :indent-level="20">
+    <!-- <Tree v-model="nodes" :indent-level="20">
       <template #node="{ node }">
         <p v-if="node.type === 'deck'" class="m-0 py-2 border-y-gray">📓 {{ node.name }}</p>
         <span v-if="node.type === 'folder'">📁 {{ node.name }}</span>
       </template>
-    </Tree>
+    </Tree> -->
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue-demi'
+// import { definecomponent } from 'vue-demi'
 
-import Tree from './components/tree/tree.vue';
+// import tree from './components/tree/tree.vue';
 
-import data from './data';
+// import data from './data';
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    Tree
-  },
-  data() {
-    return {
-      checkedNodes: [],
-      nodes: data
-    }
-  }
-})
+// export default definecomponent({
+//   name: 'app',
+//   components: {
+//     tree
+//   },
+//   data() {
+//     return {
+//       checkednodes: [],
+//       nodes: data
+//     }
+//   }
+// })
 </script>
 
 <style>

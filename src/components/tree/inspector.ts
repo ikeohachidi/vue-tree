@@ -1,4 +1,4 @@
-import { treeItem } from '@/types/tree';
+import { treeItem } from '../../types/tree';
 
 type ActiveNode = {
     nodeList?: treeItem[];

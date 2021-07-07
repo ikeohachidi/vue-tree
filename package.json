@@ -1,7 +1,7 @@
 {
   "name": "vue-quick-tree",
   "description": "A simple and straightforward vue tree component",
-  "version": "0.1.5",
+  "version": "0.1.9",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -13,6 +13,7 @@
     "hierachy",
     "quick"
   ],
+  "files": ["dist"],
   "main": "./dist/vue-quick-tree.umd.js",
   "module": "./dist/vue-quick-tree.es.js",
   "exports": {
@@ -29,9 +30,12 @@
     "@vue/composition-api": "^1.0.0-beta.1",
     "vue": "^2.0.0 || >=3.0.0-rc.0"
   },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
   "dependencies": {
-    "@vue/composition-api": "^1.0.0-rc.13",
-    "vue": "^3.0.5",
     "vue-demi": "^0.10.0"
   },
   "devDependencies": {
@@ -39,6 +43,7 @@
     "@vue/compiler-sfc": "^3.0.5",
     "typescript": "^4.3.2",
     "vite": "^2.4.0",
+    "vue": "^3.0.5",
     "vue-tsc": "^0.0.24"
   }
 }
