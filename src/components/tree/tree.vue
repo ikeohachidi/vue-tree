@@ -12,7 +12,13 @@
                 {{ node.name }}
             </slot>
 
-            <tree v-model="node.children" :style="{ paddingLeft: getIndentLevel }">
+            <tree 
+                v-if="node.children"
+                v-model="node.children" 
+                :indent-level="indentLevel" 
+                :border="border"
+                :style="{ paddingLeft: getIndentLevel, ...nodeBorder }"
+            >
                 <template v-for="(_, slot) of $slots" v-slot:[slot]="props">
                     <slot :name="slot" v-bind="props"/>
                 </template>
@@ -22,9 +28,9 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, PropType, ref } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
-import { treeItem } from '@/types/tree';
+import { treeItem, borderConfig, borderDefault } from '../../types/tree';
 import Inspector from './inspector';
 
 export default defineComponent({
@@ -36,7 +42,14 @@ export default defineComponent({
             default: 10,
             type: Number
         },
-        treeNode: Object
+        border: {
+            default: () => ({ ...borderDefault }),
+            type: Object as PropType<borderConfig>
+        },
+        allowDragNDrop: {
+            default: false,
+            type: Boolean
+        }
     },
     emits: {
         ['update:modelValue'](value: treeItem[]) {
@@ -47,20 +60,31 @@ export default defineComponent({
         nodes(): treeItem[] {
             return this.modelValue as treeItem[];
         },
+        nodeBorder(): {[cssProperties: string]: string} {
+            const border = {
+                width: this.border.width || borderDefault.width,
+                type: this.border.type || borderDefault.type,
+                color: this.border.color || borderDefault.color,
+            }
+
+            return {
+                borderLeft: `${border.width}px ${border.type} ${border.color}`
+            }
+        },
         getIndentLevel(): string {
             return `${this.indentLevel}px`
         },
     },
     methods: {
         onDragNode(node: treeItem, event: DragEvent): void {
-            if (event.dataTransfer) {
+            if (event.dataTransfer && this.allowDragNDrop) {
                 event.dataTransfer.setData('text/plain', JSON.stringify(node));
 
                 Inspector.updateActiveNode({ nodeList: this.modelValue, activeChild: node })
             }
         },
         onDropNode(dropLocation: treeItem, event: DragEvent): void {
-            if (event.dataTransfer) {
+            if (event.dataTransfer && this.allowDragNDrop) {
                 const droppedNode = JSON.parse(event.dataTransfer.getData('text/plain')) as treeItem;
 
                 if (!dropLocation || !droppedNode) {
@@ -90,5 +114,7 @@ export default defineComponent({
 ul {
     padding: 0;
     list-style: none;
+    font-size: 14px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 </style>
