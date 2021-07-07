@@ -1,74 +1,56 @@
 <template>
   <div>
-    <Tree v-model="nodes">
-      <!-- <template #node="{ node }">
-        <input type="checkbox" :value="node" v-model="checkedNodes">
-        <span v-if="node.type === 'Folder'">
-          🇳🇬
-        </span>
-        <span v-else>
-          🇩🇪 
-        </span>
-        {{ node.name}}
-      </template> -->
+    <Tree v-model="nodes" :indent-level="20">
+      <template #node="{ node }">
+        <p v-if="node.type === 'deck'" class="m-0 py-2 border-y-gray">📓 {{ node.name }}</p>
+        <span v-if="node.type === 'folder'">📁 {{ node.name }}</span>
+      </template>
     </Tree>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue-demi'
+
 import Tree from './components/tree/tree.vue';
-import { treeItem } from './types/tree';
+
+import data from './data';
 
 export default defineComponent({
   name: 'App',
   components: {
     Tree
   },
-  methods: {
-    generateArr(prepend: string): treeItem[] {
-      return Array.from(Array(5)).map((_, index) => {
-        return {
-          name: `${prepend} content ${index}`,
-          type: 'File',
-          // validator: (dragged: treeItem, dropLocation: treeItem) => {
-          //   if (dropLocation.type !== 'Folder') return false 
-
-          //   return true 
-          // },
-          children: []
-        }
-      })
-    }
-  },
-  watch: {
-    nodes: {
-      handler(value: treeItem[]) {
-        console.log(value)
-      },
-      deep: true
-    }
-  },
   data() {
     return {
       checkedNodes: [],
-      nodes: [
-        {
-          name: 'First folder',
-          type: 'Folder',
-          children: [
-            ...this.generateArr('First')
-          ]
-        },
-        {
-          name: 'Weird file',
-          type: 'Folder',
-          children: [
-            ...this.generateArr('Second')
-          ]
-        },
-      ]
+      nodes: data
     }
   }
 })
 </script>
+
+<style>
+.p-0 {
+  padding: 0;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.py-2 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.px-2 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.border-y-gray {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+</style>
