@@ -1,6 +1,6 @@
 # Vue Quick Tree
 
-A simple, straightforward and barely unopininoted tree vue component.
+A simple, straightforward and mostly unopininoted tree vue component.
 
 
 ### Installation
